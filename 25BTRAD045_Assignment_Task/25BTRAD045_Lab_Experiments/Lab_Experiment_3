@@ -1,0 +1,143 @@
+Lab Exercise 8: Contact book using lists and dictionaries.
+Python Program
+contacts = []
+
+while True:
+print("\n--- CONTACT BOOK ---")
+print("1. Add Contact")
+print("2. Search Contact")
+print("3. Update Contact")
+print("4. Delete Contact")
+print("5. Display Contacts")
+print("6. Exit")
+
+choice = input("Enter your choice: ")
+
+if choice == '1':
+name = input("Enter name: ")
+
+phone = input("Enter phone number: ")
+email = input("Enter email: ")
+
+contact = {
+"name": name,
+"phone": phone,
+"email": email
+}
+
+contacts.append(contact)
+print("Contact added successfully!")
+
+elif choice == '2':
+name = input("Enter name to search: ")
+found = False
+
+for contact in contacts:
+if contact["name"].lower() == name.lower():
+print("Contact Found:", contact)
+found = True
+break
+
+if not found:
+print("Contact not found!")
+
+elif choice == '3':
+name = input("Enter name to update: ")
+found = False
+
+for contact in contacts:
+if contact["name"].lower() == name.lower():
+contact["phone"] = input("Enter new phone: ")
+contact["email"] = input("Enter new email: ")
+print("Contact updated successfully!")
+found = True
+break
+
+if not found:
+print("Contact not found!")
+
+elif choice == '4':
+name = input("Enter name to delete: ")
+found = False
+
+for contact in contacts:
+if contact["name"].lower() == name.lower():
+contacts.remove(contact)
+print("Contact deleted successfully!")
+found = True
+break
+
+if not found:
+print("Contact not found!")
+
+elif choice == '5':
+if len(contacts) == 0:
+print("Contact book is empty!")
+else:
+
+print("\n--- ALL CONTACTS ---")
+for contact in contacts:
+print(contact)
+
+elif choice == '6':
+print("Exiting Contact Book. Thank you!")
+break
+
+else:
+print("Invalid choice! Please try again.")
+
+Lab Exercise 9: Student grading system.
+Python Program
+
+students = {}
+
+n = int(input("Enter number of students: "))
+
+for i in range(n):
+name = input("\nEnter student name: ")
+marks = float(input("Enter marks (0-100): "))
+
+students[name] = marks
+
+print("\n--- STUDENT GRADING SYSTEM ---")
+
+for name, marks in students.items():
+
+if marks >= 90:
+grade = "A+"
+elif marks >= 80:
+grade = "A"
+elif marks >= 70:
+grade = "B"
+elif marks >= 60:
+grade = "C"
+elif marks >= 50:
+grade = "D"
+elif marks >= 35:
+grade = "E"
+else:
+grade = "Fail"
+
+print("\nStudent Name:", name)
+print("Marks:", marks)
+print("Grade:", grade)
+
+Lab Exercise 10: Frequency counter using dictionaries.
+Python Program
+sentence = input("Enter a sentence: ")
+
+words = sentence.lower().split()
+
+frequency = {}
+
+for word in words:
+if word in frequency:
+
+frequency[word] += 1
+else:
+frequency[word] = 1
+
+print("\n--- WORD FREQUENCY COUNTER ---")
+
+for word, count in frequency.items():
+print(word, ":", count)
