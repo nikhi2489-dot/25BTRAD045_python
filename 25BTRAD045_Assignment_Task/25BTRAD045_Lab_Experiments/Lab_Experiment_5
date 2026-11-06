@@ -1,0 +1,157 @@
+Lab Exercise 14: Bank account system using OOP.
+Program :
+Bank Account System Using OOP
+class BankAccount:
+def __init__(self, name, balance):
+self.name = name
+self.__balance = balance
+# Deposit money
+def deposit(self, amount):
+if amount > 0:
+self.__balance += amount
+
+print("Amount deposited successfully!")
+else:
+print("Invalid deposit amount!")
+# Withdraw money
+def withdraw(self, amount):
+if amount <= 0:
+print("Invalid withdrawal amount!")
+elif amount > self.__balance:
+print("Insufficient balance!")
+else:
+self.__balance -= amount
+print("Amount withdrawn successfully!")
+# Check balance
+def check_balance(self):
+print("Account Holder:", self.name)
+print("Available Balance:", self.__balance)
+
+Create bank account object
+account = BankAccount("Rahul", 5000)
+Main menu
+while True: print("\n--- BANK ACCOUNT SYSTEM ---") print("1. Deposit") print("2. Withdraw")
+print("3. Balance Enquiry") print("4. Exit")
+choice = input("Enter your choice: ")
+if choice == "1":
+amount = float(input("Enter deposit amount: "))
+account.deposit(amount)
+elif choice == "2":
+amount = float(input("Enter withdrawal amount: "))
+account.withdraw(amount)
+elif choice == "3":
+account.check_balance()
+
+elif choice == "4":
+print("Thank you for using our banking system!")
+break
+else:
+print("Invalid choice! Please try again.")
+
+Lab Exercise 15: Library management system.
+Program :
+Library Management System using OOP
+class Book: def init(self, book_id, title, author): self.book_id = book_id
+self.title = title self.author = author self.available = True
+class Library: def init(self): self.books = []
+# Add a book
+def add_book(self, book):
+self.books.append(book)
+print("Book added successfully!")
+# Display all books
+def display_books(self):
+print("\nLIBRARY BOOKS")
+print("----------------")
+for book in self.books:
+status = "Available" if book.available else "Issued"
+print("Book ID:", book.book_id)
+print("Title:", book.title)
+print("Author:", book.author)
+print("Status:", status)
+
+print("----------------")
+# Issue a book
+def issue_book(self, book_id):
+for book in self.books:
+if book.book_id == book_id:
+if book.available:
+book.available = False
+print("Book issued successfully!")
+else:
+print("Book is already issued!")
+return
+print("Book not found!")
+# Return a book
+def return_book(self, book_id):
+for book in self.books:
+if book.book_id == book_id:
+if not book.available:
+book.available = True
+print("Book returned successfully!")
+else:
+print("Book was not issued!")
+return
+print("Book not found!")
+
+Create library object
+library = Library()
+Add sample books
+library.add_book(Book(101, "Python Programming", "John"))
+library.add_book(Book(102, "Data Structures", "David"))
+library.add_book(Book(103, "Operating Systems", "William"))
+
+Main menu
+while True: print("\n--- LIBRARY MANAGEMENT SYSTEM ---") print("1. Display
+Books") print("2. Issue Book") print("3. Return Book") print("4. Exit")
+choice = input("Enter your choice: ")
+if choice == "1":
+library.display_books()
+elif choice == "2":
+book_id = int(input("Enter Book ID to issue: "))
+library.issue_book(book_id)
+elif choice == "3":
+book_id = int(input("Enter Book ID to return: "))
+library.return_book(book_id)
+elif choice == "4":
+print("Thank you for using the Library System!")
+break
+else:
+print("Invalid choice! Please try again.")
+
+Lab Exercise 16: Dice simulator using random module.
+Program :
+
+# Dice Simulator Using Random Module
+
+import random
+
+# Initialize frequency counters
+frequency = [0, 0, 0, 0, 0, 0]
+
+# Get number of dice and rolls
+dice = int(input("Enter number of dice: "))
+rolls = int(input("Enter number of rolls: "))
+
+print("\nDICE ROLLING SIMULATOR")
+print("----------------------")
+
+# Perform dice rolls
+for i in range(rolls):
+total = 0
+
+for j in range(dice):
+result = random.randint(1, 6)
+total += result
+
+print("Roll", i + 1, ":", total)
+
+if dice == 1:
+frequency[total - 1] += 1
+
+# Display frequency for one die
+if dice == 1:
+print("\nFREQUENCY OF EACH NUMBER")
+for i in range(6):
+print(i + 1, "appeared", frequency[i], "times")
+
+print("\nSimulation completed!")
