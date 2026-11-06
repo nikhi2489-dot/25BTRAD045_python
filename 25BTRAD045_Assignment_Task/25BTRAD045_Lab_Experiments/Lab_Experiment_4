@@ -1,0 +1,160 @@
+Lab Exercise 11: Log file reader program.
+Program :
+# Create a sample log file
+with open("sample_log.txt", "w") as file:
+file.write("""INFO: Application started
+ERROR: Database connection failed
+WARNING: Low memory
+INFO: User logged in
+ERROR: File not found
+WARNING: CPU usage is high
+INFO: Application running
+""")
+# Initialize counters
+error = 0
+warning = 0
+info = 0
+try:
+with open("sample_log.txt", "r") as file:
+
+for line in file:
+line = line.upper()
+if "ERROR" in line:
+error += 1
+elif "WARNING" in line:
+warning += 1
+elif "INFO" in line:
+info += 1
+print("LOG FILE SUMMARY")
+print("----------------")
+print("ERROR count :", error)
+print("WARNING count :", warning)
+print("INFO count :", info)
+except FileNotFoundError:
+print("Log file not found!")
+
+Lab Exercise 12: Student data manager using files.
+Program :
+# Student Data Manager Using Files
+filename = "students.txt"
+
+def add_student():
+roll = input("Enter Roll Number: ")
+name = input("Enter Student Name: ")
+marks = input("Enter Marks: ")
+if not roll or not name:
+print("Invalid input!")
+return
+with open(filename, "a") as file:
+file.write(roll + "," + name + "," + marks + "\n")
+print("Student record added successfully!")
+def display_students():
+try:
+with open(filename, "r") as file:
+print("\nSTUDENT RECORDS")
+print("----------------")
+for line in file:
+print(line.strip())
+except FileNotFoundError:
+print("No student records found!")
+def search_student():
+roll = input("Enter Roll Number to search: ")
+try:
+with open(filename, "r") as file:
+for line in file:
+data = line.strip().split(",")
+if data[0] == roll:
+print("Student Found!")
+print("Roll Number:", data[0])
+print("Name:", data[1])
+print("Marks:", data[2])
+return
+
+print("Student not found!")
+except FileNotFoundError:
+print("File not found!")
+def update_student():
+roll = input("Enter Roll Number to update: ")
+students = []
+found = False
+try:
+with open(filename, "r") as file:
+students = file.readlines()
+with open(filename, "w") as file:
+for line in students:
+data = line.strip().split(",")
+if data[0] == roll:
+name = input("Enter New Name: ")
+marks = input("Enter New Marks: ")
+file.write(roll + "," + name + "," + marks + "\n")
+found = True
+else:
+file.write(line)
+if found:
+print("Student record updated successfully!")
+else:
+print("Student not found!")
+except FileNotFoundError:
+print("File not found!")
+# Main Menu
+while True:
+print("\n--- STUDENT DATA MANAGER ---")
+print("1. Add Student")
+
+print("2. Display Students")
+print("3. Search Student")
+print("4. Update Student")
+print("5. Exit")
+choice = input("Enter your choice: ")
+if choice == "1":
+add_student()
+elif choice == "2":
+display_students()
+elif choice == "3":
+search_student()
+elif choice == "4":
+update_student()
+elif choice == "5":
+print("Thank you!")
+break
+else:
+print("Invalid choice! Try again.")
+
+Lab Exercise 13: CSV-based payroll management system.
+Program:
+import csv
+# Create a sample CSV file
+with open("employees.csv", "w", newline="") as file:
+writer = csv.writer(file)
+writer.writerow(["ID", "Name", "Basic Salary", "Allowance", "Deduction"])
+writer.writerow([101, "Rahul", 20000, 5000, 2000])
+writer.writerow([102, "Priya", 25000, 6000, 3000])
+writer.writerow([103, "Arun", 30000, 7000, 4000])
+# Read employee records and calculate salary
+try:
+with open("employees.csv", "r") as file:
+reader = csv.DictReader(file)
+print("PAYROLL MANAGEMENT SYSTEM")
+print("-------------------------")
+total_salary = 0
+for emp in reader:
+basic = float(emp["Basic Salary"])
+allowance = float(emp["Allowance"])
+deduction = float(emp["Deduction"])
+gross = basic + allowance
+net = gross - deduction
+total_salary += net
+print("\nEmployee ID:", emp["ID"])
+print("Employee Name:", emp["Name"])
+print("Basic Salary:", basic)
+
+print("Allowance:", allowance)
+print("Gross Salary:", gross)
+print("Deduction:", deduction)
+print("Net Salary:", net)
+print("\n-------------------------")
+print("Total Net Salary:", total_salary)
+except FileNotFoundError:
+print("Employee file not found!")
+except ValueError:
+print("Invalid salary data!")
