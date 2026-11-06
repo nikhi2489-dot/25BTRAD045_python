@@ -1,0 +1,52 @@
+Lab Exercise 5: Number guessing game.
+CODE:
+import random
+number = random.randint(1, 10)
+print("Number Guessing Game")
+print("Guess a number between 1 and 10")
+print("Secret number (for testing):", number)
+while True:
+guess = int(input("Enter your guess: "))
+if guess == number:
+print("Congratulations! You guessed the correct number.")
+break
+elif guess < number:
+print("Too low! Try again.")
+else:
+print("Too high! Try again.")
+
+Lab Exercise 6: Prime number and factorial programs.
+CODE: 1 Prime number program
+# Program to check whether a number is prime
+num = int(input("Enter a number: "))
+if num <= 1:
+print(num, "is not a prime number")
+else:
+for i in range(2, num):
+if num % i == 0:
+print(num, "is not a prime number")
+break
+else:
+print(num, "is a prime number")
+
+2. Factorial program
+CODE:
+# Program to find the factorial of a number
+num = int(input("Enter a number: "))
+factorial = 1
+for i in range(1, num + 1):
+factorial = factorial * i
+print("Factorial of", num, "is", factorial)
+
+Lab Exercise 7: Fibonacci series using recursion.
+CODE:
+# Program to generate Fibonacci series using recursion
+def fibonacci(n):
+if n <= 1:
+return n
+else:
+return fibonacci(n - 1) + fibonacci(n - 2)
+terms = int(input("Enter the number of terms: "))
+print("Fibonacci Series:")
+for i in range(terms):
+print(fibonacci(i), end=" ")
